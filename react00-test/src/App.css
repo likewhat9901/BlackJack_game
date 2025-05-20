@@ -2,22 +2,30 @@
       margin: 0; padding: 0;
     }
     
-    /* 게임 이름 */
-    h1{
-      text-align: center; width: 100%;
-      border-top: 3px solid black;
-      border-bottom: 3px solid black;
-      padding: 5px 0; margin-top: 1.5vh;
-    }
-
     /* 게임판 */
     section{
       border: 1px solid red;
-      /* display: grid; */
+      display: grid;
+      grid-template-areas: 
+        "header"
+        "computer"
+        "deck"
+        "player"
+        "control";
+      grid-template-rows: 1fr 2fr 2fr 2fr 1fr;
       width: 100%; height: 80vh;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), 
           url(./images/blackjack_table.jpeg);
       background-size: contain;
+    }
+
+    /* 게임 이름 */
+    h1{
+      grid-area: header;
+      text-align: center; width: 100%;
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+      padding: 5px 0; margin-top: 1.5vh;
     }
 
     /* 위아래, card 설정 */
@@ -27,6 +35,12 @@
       justify-content: center;
       padding-top: 2.5vh;
       width: 100%; height: 20vh;
+    }
+    .play.computer{
+      grid-area: computer;
+    }
+    .play.user{
+      grid-area: player;
     }
     .card{
       border: 1px solid black;
@@ -40,12 +54,13 @@
 
     /* 가운데 */
     .deck{
+      grid-area: deck;
       border: 1px solid blue;
       width: 100%; height: 25vh;
       display: flex; position: relative;
       justify-content: center;
     }
-    .deck .card{
+    .deck.card{
       background-image: url(./images/back.gif);
       background-position: center;
     }

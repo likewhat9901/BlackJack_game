@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+        *{
+      margin: 0; padding: 0;
+    }
+    
+    /* 게임판 */
+    section{
+      display: grid; width: 100%; height: 80vh; min-width: 1000px; min-height: 1000px;
+      grid-template-areas: 
+        "header"
+        "computer"
+        "deck"
+        "player"
+        "control";
+      grid-template-rows: 0.5fr 2.7fr 2.7fr 2.7fr 1.4fr;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), 
+          url(../images/blackjack_table.jpeg);
+      background-size: contain;
+    }
+    h1{
+      grid-area: header;
+    }
+    .computer{
+      grid-area: computer;
+    }
+    .deck{
+      grid-area: deck;
+    }
+    .player{
+      grid-area: player;
+    }
+    .control{
+      grid-area: control;
+    }
+
+    /* 게임 이름 */
+    h1{
+      width: 100%; padding: 5px 0; font-size: 2rem;
+      display: flex; justify-content: center; align-items: center;
+      border-top: 3px solid black; border-bottom: 3px solid black;
+    }
+
+    /* 위아래, card 설정 */
+    .player, .computer{
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .card{
+      border: 1px solid black; border-radius: 1vw;
+      width: 8.4rem; height: 11.9rem; margin: auto 20px;
+      background-size: cover; background-repeat: no-repeat;
+    }
+
+    /* 가운데 */
+    .deck{
+      display: flex; position: relative; justify-content: center;
+    }
+    .deck .card{
+      background-image: url(../images/back.gif); background-position: center;
+    }
+    .rule{
+      border: 1px solid yellow; border-radius: 1vw; position: absolute;
+      top: 0px; right: 20px; width: 350px; height: 250px; padding: 1vw;
+      background-color: white; font-size: 0.9rem; line-height: 1.5rem;
+    }
+
+    /* 맨 밑 */
+    .control{
+      display: flex; justify-content: center; align-items: center;
+      gap: 5vw;
+      position: relative;
+    }
+
+    .buttons{
+
+    }
+
+    button{
+      width: 12vw; height: 4vh;
+      font-size: 1.6vw; font-weight: bold; line-height: 1.6vw;
+      cursor: pointer; overflow: hidden;
+      border-radius: 1vw;
+    }
+    .button .gameStart{
+      position: absolute;
+      top: 2.5vh; left: 2vw;
+    }
+    .money{
+      position: relative;
+      top: 0.5vh; right: 0px;
+      text-align: left;
+      justify-items: end;
+      font-size: 1.6vw; line-height: 3vh; 
+    }
+    .show{
+      width: 18vw; height: 3vh; padding: 0.1rem 0.1rem 0.1rem 1rem;
+      background-color: white;
+      border-radius: 0.5vw;
+    }
+    .bet{
+      margin-bottom: 1vh; display: flex;
+      align-items: center;
+    }
+    .bet input{
+      width: 9.8vw; line-height: 2vh;
+      margin-left: 0.5rem; border: 0px;
+    }
+
+    #deposit{
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h1 class='header'>블랙잭 게임</h1>
+    <div class="computer">
+      <div class="card" id="c_first">카드1</div>
+      <div class="card" id="c_second">카드2</div>
+      <div class="card" id="c_third">카드3</div>
+      <div class="card" id="c_fourth">카드4</div>
+      <div class="card" id="c_fifth">카드5</div>
+    </div>
+    <div class="deck">
+      <div class="card">카드덱</div>
+      <p class="rule">
+        <strong>게임 규칙</strong><br />
+        - 목표: 21점을 넘지 않고 딜러보다 높은 점수 얻기<br />
+        - A: 1점 또는 11점<br />
+        - J/Q/K: 10점<br />
+      </p>
+    </div>
+    <div class="player">
+      <div class="card">카드1</div>
+      <div class="card">카드2</div>
+      <div class="card">카드3</div>
+      <div class="card">카드4</div>
+      <div class="card">카드5</div>
+    </div>
+    <div class="control">
+      <div class="buttons">
+        <button type="button" class="gameStart" onClick={game_start}>게임시작</button>
+        <button type="button" class="double">더블다운</button>
+        <button type="button" class="hit" onClick={hit}>히트(한장더)</button>
+        <button type="button" class="stand" onClick={stand}>스탠드(Stop)</button>
+      </div>
+      <div class="money">
+        <div class="show bet">
+          <label htmlFor="bet_input">베팅금액: </label>
+          <input type="text" id="bet_input" />
+        </div>
+        <div class="show myBudget">남은금액 : <span id="deposit">60,000</span></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
