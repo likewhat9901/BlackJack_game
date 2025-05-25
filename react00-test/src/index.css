@@ -1,0 +1,99 @@
+        *{
+      margin: 0; padding: 0;
+    }
+    
+    /* 게임판 */
+    section{
+      display: grid; width: 100%; height: 80vh; min-width: 1000px; min-height: 1000px;
+      grid-template-areas: 
+        "header"
+        "computer"
+        "deck"
+        "player"
+        "control";
+      grid-template-rows: 0.5fr 2.7fr 2.7fr 2.7fr 1.4fr;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), 
+          url(./images/blackjack_table.jpeg);
+      background-size: contain;
+    }
+    h1{
+      grid-area: header;
+    }
+    .computer{
+      grid-area: computer;
+    }
+    .deck{
+      grid-area: deck;
+    }
+    .player{
+      grid-area: player;
+    }
+    .control{
+      grid-area: control;
+    }
+
+    /* 게임 이름 */
+    h1{
+      width: 100%; padding: 5px 0; font-size: 2rem;
+      display: flex; justify-content: center; align-items: center;
+      border-top: 3px solid black; border-bottom: 3px solid black;
+      background-color: white;
+    }
+
+    /* 위아래, card 설정 */
+    .player, .computer{
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .card{
+      border: 1px solid black; border-radius: 1vw;
+      width: 8.4rem; height: 11.9rem; margin: auto 20px;
+      background-size: cover; background-repeat: no-repeat;
+    }
+
+    /* 가운데 */
+    .deck{
+      display: flex; position: relative; justify-content: center;
+    }
+    .deck .card{
+      background-image: url(./images/back.gif); background-position: center;
+    }
+    .rule{
+      border: 1px solid yellow; border-radius: 1vw; position: absolute;
+      top: 0px; right: 20px; width: 350px; height: 250px; padding: 1vw;
+      background-color: white; font-size: 0.9rem; line-height: 1.5rem;
+    }
+
+    /* 컨트롤 바 */
+    .control{
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 30px;  position: relative;
+    }
+    .control button{
+      width: 12vw; height: 45px; min-width: 120px;
+      font-size: 1rem; font-weight: bold; line-height: 1.6vw;
+      cursor: pointer; overflow: hidden;
+      border-radius: 1vw;
+    }
+    /* 더블다운, 히트, 스탠드 */
+    .actions{
+      display: flex; justify-content: center; align-items: center;
+      gap: 50px;
+    }
+
+    /* 베팅금액, 남은금액 */
+    .display{
+      display: flex; flex-direction: column;
+      gap: 15px;
+    }
+    .display div{
+      width: 18vw; height: 40px; padding: 2px 15px;
+      background-color: white; min-width: 200px;
+      border-radius: 0.5vw; border: 1px solid black;
+      font-size: 1.2rem;
+      display: flex; align-items: center;
+    }
+    .display input{
+      width: 9.8vw; margin-left: 0.5rem; border: 0px;
+      font-size: 1.2rem; margin-top: 3px;
+    }

@@ -44,6 +44,7 @@
       width: 100%; padding: 5px 0; font-size: 2rem;
       display: flex; justify-content: center; align-items: center;
       border-top: 3px solid black; border-bottom: 3px solid black;
+      background-color: white;
     }
 
     /* 위아래, card 설정 */
@@ -72,62 +73,51 @@
 
     /* 컨트롤 바 */
     .control{
-      display: flex; justify-content: center; align-items: center;
-      gap: 5vw;
-      position: relative;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 30px;  position: relative;
     }
-    .buttons{
-      display: flex; justify-content: center; align-items: center;
-      width: 80%; gap: 50px;
-    }
-    .money{
-      position: relative;
-      top: 0.5vh; right: 0px;
-      text-align: left;
-      justify-items: end;
-      font-size: 1.6vw; line-height: 3vh; 
-    }
-
-
-    button{
-      width: 12vw; height: 4vh;
-      font-size: 1.6vw; font-weight: bold; line-height: 1.6vw;
+    .control button{
+      width: 12vw; height: 45px; min-width: 120px;
+      font-size: 1rem; font-weight: bold; line-height: 1.6vw;
       cursor: pointer; overflow: hidden;
       border-radius: 1vw;
     }
-    .button .gameStart{
-      position: absolute;
-      top: 2.5vh; left: 2vw;
+    /* 더블다운, 히트, 스탠드 */
+    .actions{
+      display: flex; justify-content: center; align-items: center;
+      gap: 50px;
     }
 
-    .show{
-      width: 18vw; height: 3vh; padding: 0.1rem 0.1rem 0.1rem 1rem;
-      background-color: white;
-      border-radius: 0.5vw;
+    /* 베팅금액, 남은금액 */
+    .display{
+      display: flex; flex-direction: column;
+      gap: 15px;
     }
-    .bet{
-      margin-bottom: 1vh; display: flex;
-      align-items: center;
+    .display div{
+      width: 18vw; height: 40px; padding: 2px 15px;
+      background-color: white; min-width: 200px;
+      border-radius: 0.5vw; border: 1px solid black;
+      font-size: 1.2rem;
+      display: flex; align-items: center;
     }
-    .bet input{
-      width: 9.8vw; line-height: 2vh;
-      margin-left: 0.5rem; border: 0px;
+    .display input{
+      width: 9.8vw; margin-left: 0.5rem; border: 0px;
+      font-size: 1.2rem; margin-top: 3px;
     }
 
-    #deposit{
-      margin-left: 0.5rem;
-    }
+
+
   </style>
 </head>
 <body>
   <section>
     <h1 class='header'>블랙잭 게임</h1>
     <div class="computer">
-      <div class="card" id="c_first">카드1</div>
-      <div class="card" id="c_second">카드2</div>
-      <div class="card" id="c_third">카드3</div>
-      <div class="card" id="c_fourth">카드4</div>
-      <div class="card" id="c_fifth">카드5</div>
+      <div class="card">카드1</div>
+      <div class="card">카드2</div>
+      <div class="card">카드3</div>
+      <div class="card">카드4</div>
+      <div class="card">카드5</div>
     </div>
     <div class="deck">
       <div class="card">카드덱</div>
@@ -146,18 +136,21 @@
       <div class="card">카드5</div>
     </div>
     <div class="control">
-      <div class="buttons">
-        <button type="button" class="gameStart" onClick={game_start}>게임시작</button>
+      <button type="button" class="gameStart" onClick={game_start}>게임시작</button>
+      <div class="actions">
         <button type="button" class="double">더블다운</button>
         <button type="button" class="hit" onClick={hit}>히트(한장더)</button>
         <button type="button" class="stand" onClick={stand}>스탠드(Stop)</button>
       </div>
-      <div class="money">
-        <div class="show bet">
+      <div class="display">
+        <div class="bet">
           <label htmlFor="bet_input">베팅금액: </label>
           <input type="text" id="bet_input" />
         </div>
-        <div class="show myBudget">남은금액 : <span id="deposit">60,000</span></div>
+        <div class="budget">
+          <label htmlFor="budget_show">남은금액: </label>
+          <input type="text" id="budget_show" value=60,000 />
+        </div>
       </div>
     </div>
   </section>
